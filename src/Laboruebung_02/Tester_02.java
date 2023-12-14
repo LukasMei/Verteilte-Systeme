@@ -1,6 +1,7 @@
-import Laboruebung_02.DSLPRequestTime;
+package Laboruebung_02;
 
-public class Tester {
+
+public class Tester_02 {
 
     public static void main(String[] args) {
         
