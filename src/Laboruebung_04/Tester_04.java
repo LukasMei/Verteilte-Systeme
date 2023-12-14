@@ -17,7 +17,7 @@ public class Tester_04 {
 
      SimpleClient client1 = new SimpleClient(userName1, msg1);
 
-     System.out.println("Name: " + userName1 + "\nNachricht: " + msg1 );
+     
 
      client1.start();
 

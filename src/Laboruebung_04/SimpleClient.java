@@ -21,7 +21,7 @@ import java.nio.charset.StandardCharsets;
 public class SimpleClient implements Runnable {
 
 	private Thread thread = null;
-	private String groupName = "?";
+	private String groupName = "Freitag-Teams";
 	private String userName;
 	private String message;
 	private boolean running;
@@ -37,7 +37,7 @@ public class SimpleClient implements Runnable {
 	private static final String DSLP_GROUP_JOIN_ACK = "group join ack";
 	private static final String DSLP_BODY = "dslp-body";
 
-	String writeMessage = DSLP_HEADER + DSLP_GROUP_JOIN + DSLP_EOL + DSLP_GROUP_NAME + DSLP_EOL + DSLP_BODY;
+	
 
 	public SimpleClient(String name, String message) {
 		this.thread = new Thread(this, name);
@@ -72,12 +72,14 @@ public class SimpleClient implements Runnable {
 		if (sc != null) {
 			while (running) {
 				try {
-					write(sc, writeMessage);
+					write(sc, (DSLP_HEADER + DSLP_GROUP_JOIN + DSLP_EOL + DSLP_GROUP_NAME + DSLP_EOL + DSLP_BODY));					
 					String response = read(sc);
 					String[] split_line_break = response.split("\r}n");
 					for (String zeile : split_line_break) {
 						System.out.println(zeile);
 					}
+					Thread.sleep(1000);
+					running = false;
 					sc.close();
 
 				} catch (Exception e) {
@@ -85,7 +87,9 @@ public class SimpleClient implements Runnable {
 				}
 
 			}
+
 		}
+
 	}
 
 	/*
@@ -96,17 +100,17 @@ public class SimpleClient implements Runnable {
 	private String read(SocketChannel sc) throws IOException {
 
 		ByteBuffer buffer = ByteBuffer.allocate(BUF_SIZE);
-
 		sc.read(buffer);
 		String answer = new String(buffer.array(), StandardCharsets.UTF_8);
 
 		return answer;
 	}
 
-
-	/* Wir übergebn die Nachricht an ein byte Array.
+	/*
+	 * Wir übergebn die Nachricht an ein byte Array.
 	 * Initialisieren einen neuen ByteBuffer mit der gräße Buff_Size.
-	 * Das byte Array wird vom Byte Buffer gewrappt und dann vom socketchanlle geschrieben.
+	 * Das byte Array wird vom Byte Buffer gewrappt und dann vom socketchanlle
+	 * geschrieben.
 	 * 
 	 */
 	private void write(SocketChannel sc, String msg) throws IOException {
