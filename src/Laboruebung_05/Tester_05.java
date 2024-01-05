@@ -4,13 +4,14 @@ public class Tester_05 {
     // for group notify testing
 
   private static String userName1;
+  private static String msg1;
   
 
   public static void main(String[] args) {
 
      userName1 = args[0];
 
-     //String msg1 = args[1];    
+     //msg1 = args[1];    
      
 
      SimpleClient2 client1 = new SimpleClient2(userName1);

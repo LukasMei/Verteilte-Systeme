@@ -62,8 +62,7 @@ public class SimpleClient implements Runnable {
 			InetSocketAddress adresse = new InetSocketAddress(host, port);
 		    sc.connect(adresse);
 			System.out.println(adresse);
-			System.out.println(" Verbindung geschafft");
-			running = true;
+			System.out.println("Verbindung geschafft");		
 			write(sc, (DSLP_HEADER + DSLP_GROUP_JOIN + DSLP_EOL + DSLP_GROUP_NAME + DSLP_EOL + DSLP_BODY + DSLP_EOL));
 		} catch (IOException e) {
 			e.printStackTrace();
