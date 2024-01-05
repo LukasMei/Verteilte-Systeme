@@ -7,23 +7,25 @@ public class Tester_05 {
   private static String msg1;
   
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws InterruptedException {
 
      userName1 = args[0];
 
      //msg1 = args[1];    
      
 
-     SimpleClient2 client1 = new SimpleClient2(userName1);
+     SimpleClient client = new SimpleClient(userName1);
      
 
-     client1.start();
+     client.start();
 
      // sleep for 2 s     
 
      // sleep for 1 s
 
-     //client1.stop(); // forces group leave process to begin
+     Thread.sleep(10000);
+
+     client.stop(); // forces group leave process to begin
 
   }
 }
